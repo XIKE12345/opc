@@ -7,7 +7,7 @@ import java.util.List;
 
 /**
  * @CalssName MonitorItemsInfo
- * @Desc TODO
+ * @Desc 获取哪些位点值的请求实体
  * @Author huiKe
  * @email <link>754873891@qq.com </link>
  * @CreateDate 2019/12/31

@@ -35,14 +35,14 @@ public class OpcDataController {
      * 获取OPC应用程序在注册表中的信息（Get program information in the registry）
      */
     @PostMapping("opc/get/registry/info")
-    public List<ProgInfoDtoResp> getProgInfoInRegist(@RequestBody ProgInfoDtoReq progInfoDtoReq) {
+    public List<ProgInfoDtoResp> getPrigInfoInResist(@RequestBody ProgInfoDtoReq progInfoDtoReq) {
         return opcService.getRegistryInfo(progInfoDtoReq);
     }
 
     /**
      * 登陆OPC服务
      *
-     * @param progInfoDtoReq
+     * @param progInfoDtoReq 登陆opc服务的请求实体
      */
     @PostMapping("/login/server")
     public boolean uploadConfigInfo(@RequestBody ProgInfoDtoReq progInfoDtoReq) {
@@ -52,23 +52,21 @@ public class OpcDataController {
     /**
      * 获取OPC服务中所有的group和items的Id
      *
-     * @return
+     * @return 返回opc服务中的tree结构
      */
     @PostMapping("opc/get/group")
     public Map<Object, Object> getOpcGroupAndItemsId(@RequestBody OpcGroupAndItemsReq opcGroupAndItemsReq) {
-        Map<Object, Object> opcGroupsAndItemsId = opcService.getOpcGroupsAndItemsId(opcGroupAndItemsReq);
-        return opcGroupsAndItemsId;
+        return opcService.getOpcGroupsAndItemsId(opcGroupAndItemsReq);
     }
 
     /**
      * 选取需要监测的opc点位，获取相应的点位数据值
      *
-     * @return
+     * @return 返回监控的opc点位值
      */
     @PostMapping("opc/monitor/Items")
     public String monitorOpcItems(@RequestBody MonitorItemsInfoReq monitorItemsInfoReq) {
-        String s = opcService.monitorOpcItems(monitorItemsInfoReq);
-        return s;
+        return opcService.monitorOpcItems(monitorItemsInfoReq);
     }
 
 }

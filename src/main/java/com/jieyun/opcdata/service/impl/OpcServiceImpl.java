@@ -38,19 +38,24 @@ import java.util.Map;
 @Service
 public class OpcServiceImpl implements OpcService {
 
+    private String firstLeafBranch = "";
+
     static Server server = null;
 
     private Map<Object, Object> globalMap = new HashMap<>(16);
 
 
     @Override
-    public boolean uploadConfigInfo(ProgInfoDtoReq progInfoDtoReq) {
-        try {
+    public boolean uploadConfigInfo(ProgInfoDtoReq progInfoDtoReq)
+    {
+        try
+        {
             server = ConnectInfoUtil.getConnectionInformation(progInfoDtoReq.getHost(), progInfoDtoReq.getUser(),
                     progInfoDtoReq.getPassword(), progInfoDtoReq.getDomain(), progInfoDtoReq.getClsId());
             server.connect();
             return true;
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             return false;
         }
     }
@@ -58,14 +63,17 @@ public class OpcServiceImpl implements OpcService {
     /**
      * 获取OPC应用在注册表中的相关信息
      *
-     * @param progInfoDtoReq
-     * @return
+     * @param progInfoDtoReq 请求对象
+     * @return 返回程序在注册表中的信息
      */
     @Override
-    public List<ProgInfoDtoResp> getRegistryInfo(ProgInfoDtoReq progInfoDtoReq) {
+    public List<ProgInfoDtoResp> getRegistryInfo(ProgInfoDtoReq progInfoDtoReq)
+    {
         List<ProgInfoDtoResp> progInfoDtoRespList = new ArrayList<>();
-        try {
-            if (!ObjectUtils.isEmpty(progInfoDtoReq)) {
+        try
+        {
+            if (!ObjectUtils.isEmpty(progInfoDtoReq))
+            {
                 String host = progInfoDtoReq.getHost();
                 String user = progInfoDtoReq.getUser();
                 String password = progInfoDtoReq.getPassword();
@@ -74,7 +82,8 @@ public class OpcServiceImpl implements OpcService {
                 ConnectInfoUtil connectInfoUtil = new ConnectInfoUtil();
                 progInfoDtoRespList = connectInfoUtil.getAllPrgInfoInRegistry(host, user, password, domain);
             }
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             log.error("Get program information in the registry exception ", e);
         }
         return progInfoDtoRespList;
@@ -83,21 +92,22 @@ public class OpcServiceImpl implements OpcService {
     /**
      * 获取OPC服务中的所有Groups和Items
      *
-     * @return
+     * @return 返回tree
      */
     @Override
     public Map<Object, Object> getOpcGroupsAndItemsId(OpcGroupAndItemsReq opcGroupAndItemsReq) {
         if (!ObjectUtils.isEmpty(opcGroupAndItemsReq)) {
             // 创建连接
-            ConnectInfoUtil connectInfoUtil = new ConnectInfoUtil();
-            log.info("start connect opcServer and create Server");
-            try {
+            try
+            {
                 // 连接服务:问题，连接1次还是连接多次，目前这种是连接多次，每次请求接口的时候都要进行连接OPC服务（慢）
                 log.info("server connect over");
                 dumpTree(server.getTreeBrowser().browse(), 0);
-            } catch (JIException e) {
+            } catch (JIException e)
+            {
                 log.error("JIException error", e);
-            } catch (UnknownHostException e) {
+            } catch (UnknownHostException e)
+            {
                 log.error("unknown host error", e);
             }
         }
@@ -107,39 +117,38 @@ public class OpcServiceImpl implements OpcService {
     /**
      * 使用递归算法将组织结构（组 -> 项）打印出来
      *
-     * @param branch
-     * @param level
+     * @param branch 分支（group）
+     * @param level 子分支 （child group or items）
      */
-    String firstLeafBranch = "";
-
     private void dumpTree(final Branch branch, final int level) {
         String name = branch.getName();
         log.info("-----branch.getName---is---{}", name);
         final StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < level; i++) {
+        for (int i = 0; i < level; i++)
+        {
             sb.append("  ");
         }
         // 将打印前加空格
         final String indent = sb.toString();
         // 打印所有分支下的子分支的名称和项的Id
         List<Object> firstBreachList = new ArrayList<>();
-        if (!StringUtils.isEmpty(name)) {
+        if (!StringUtils.isEmpty(name))
+        {
             firstLeafBranch = name;
         }
-        for (final Leaf leaf : branch.getLeaves()) {
-            if (!StringUtils.isEmpty(leaf.getItemId())) {
+        for (final Leaf leaf : branch.getLeaves())
+        {
+            if (!StringUtils.isEmpty(leaf.getItemId()))
+            {
                 log.info("{}", indent + "Leaf: " + leaf.getName() + " [" + leaf.getItemId() + "]");
                 firstBreachList.add(leaf.getItemId());
             }
         }
-        // 在此处增加一层
-        Map<Object, Object> sim = new HashMap<>(16);
-
         globalMap.put(firstLeafBranch, firstBreachList);
         log.info("-----globalMap---first---{}", globalMap.toString());
-
         // 递归打印所有Branch分支
-        for (final Branch subBranch : branch.getBranches()) {
+        for (final Branch subBranch : branch.getBranches())
+        {
             log.info("{}", indent + "Branch: " + subBranch.getName());
             dumpTree(subBranch, level + 1);
         }
@@ -147,9 +156,9 @@ public class OpcServiceImpl implements OpcService {
     }
 
     /**
-     * 选择需要监测的Items(法2，使用AccessBase 同步展示)
+     * 选择需要监测的Items(使用AccessBase)
      *
-     * @param monitorItemsInfoReq
+     * @param monitorItemsInfoReq 要监控的itemId
      * @return 问题：如何将获取到的数据取到并展示给前台
      */
     @Override
@@ -157,11 +166,14 @@ public class OpcServiceImpl implements OpcService {
         long l0 = System.currentTimeMillis();
         Map<Object, Object> tmpMap = new HashMap<>(16);
         Map<String, String> finalValueMap = new HashMap<>(16);
-        if (!ObjectUtils.isEmpty(monitorItemsInfoReq)) {
+        if (!ObjectUtils.isEmpty(monitorItemsInfoReq))
+        {
             List<GroupAndItemsInfoDto> itemsInfoDtos = monitorItemsInfoReq.getItemsInfo();
-            for (GroupAndItemsInfoDto itemsInfoDto : itemsInfoDtos) {
+            for (GroupAndItemsInfoDto itemsInfoDto : itemsInfoDtos)
+            {
                 String itemId = itemsInfoDto.getItemId();
-                try {
+                try
+                {
                     long l1 = System.currentTimeMillis();
                     final AccessBase access = new SyncAccess(server, 10);
                     long l2 = System.currentTimeMillis();
@@ -172,13 +184,16 @@ public class OpcServiceImpl implements OpcService {
                     Thread.sleep(300);
                     long l4 = System.currentTimeMillis();
                     // 遍历临时的tmpMap，获取未知类型的item值
-                    tmpMap.forEach((k, v) -> {
+                    tmpMap.forEach((k, v) ->
+                    {
                         log.info("------key-and-value-{}-{}", k, v);
-                        try {
+                        try
+                        {
                             // 将未知的item类型，转化成String类型的Item值
                             String strValue = VariantDumperUtils.dumpValue("\t", v);
                             finalValueMap.put(k.toString(), strValue);
-                        } catch (JIException e) {
+                        } catch (JIException e)
+                        {
                             e.printStackTrace();
                         }
                     });
@@ -187,21 +202,12 @@ public class OpcServiceImpl implements OpcService {
                     log.info("-----thread--time is{}", (l4 - l3));
                     log.info("-----monitorOpcItems sum --time is{}", (System.currentTimeMillis() - l0));
                     access.unbind();
-                } catch (JIException | UnknownHostException e) {
-                    e.printStackTrace();
-                } catch (AddFailedException e) {
-                    e.printStackTrace();
-                } catch (NotConnectedException e) {
-                    e.printStackTrace();
-                } catch (DuplicateGroupException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
+                } catch (JIException | UnknownHostException | AddFailedException | NotConnectedException | DuplicateGroupException | InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         }
-        String jsonStr = JSONObject.toJSONString(finalValueMap);
-        return jsonStr;
+        return JSONObject.toJSONString(finalValueMap);
     }
 
 

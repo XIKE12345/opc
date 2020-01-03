@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * @CalssName GroupAndItemsInfoDto
- * @Desc TODO
+ * @Desc 要监控的位点对象
  * @Author huiKe
  * @email <link>754873891@qq.com </link>
  * @CreateDate 2019/12/31

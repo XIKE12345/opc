@@ -2,18 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5f9488d6-6458-4c36-b805-fc9b8455a2b3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/jieyun/opcdata/utils/VariantDumperUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jieyun/opcdata/controller/OpcDataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jieyun/opcdata/controller/OpcDataController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jieyun/opcdata/service/OpcService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jieyun/opcdata/service/OpcService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jieyun/opcdata/entity/req/GroupAndItemsInfoDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jieyun/opcdata/entity/req/GroupAndItemsInfoDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jieyun/opcdata/entity/req/MonitorItemsInfoReq.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jieyun/opcdata/entity/req/MonitorItemsInfoReq.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/jieyun/opcdata/service/impl/OpcServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jieyun/opcdata/service/impl/OpcServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/jieyun/opcdata/utils/DataCallbackDumper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/jieyun/opcdata/utils/DataCallbackDumper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jieyun/opcdata/controller/OpcDataController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jieyun/opcdata/controller/OpcDataController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jieyun/opcdata/service/OpcService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jieyun/opcdata/service/OpcService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jieyun/opcdata/service/impl/OpcServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jieyun/opcdata/service/impl/OpcServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jieyun/opcdata/utils/DataCallbackDumper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jieyun/opcdata/utils/DataCallbackDumper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/jieyun/opcdata/utils/VariantDumper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/jieyun/opcdata/utils/VariantDumper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jieyun/opcdata/test/Children.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jieyun/opcdata/test/MultipleTree.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jieyun/opcdata/test/Node.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jieyun/opcdata/test/NodeIDComparator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/jieyun/opcdata/test/VirtualDataGenerator.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -146,12 +145,20 @@
       <option name="project" value="LOCAL" />
       <updated>1578018399844</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="从OPCServer获取位号值，并且将位号值转化为String类型。">
+      <created>1578043318105</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1578043318105</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="模拟从java从opc服务器上获取传感器数据。&#10;环境：VMware Fusion虚拟机。Windows Server。&#10;模拟软件：MatrikonOPC&#10;OPC主要依赖：openscada jinterop" />
-    <option name="LAST_COMMIT_MESSAGE" value="模拟从java从opc服务器上获取传感器数据。&#10;环境：VMware Fusion虚拟机。Windows Server。&#10;模拟软件：MatrikonOPC&#10;OPC主要依赖：openscada jinterop" />
+    <MESSAGE value="从OPCServer获取位号值，并且将位号值转化为String类型。" />
+    <option name="LAST_COMMIT_MESSAGE" value="从OPCServer获取位号值，并且将位号值转化为String类型。" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2000" y="277" key="#Inspections" timestamp="1577760068498">
@@ -176,10 +183,10 @@
       <screen x="1440" y="23" width="1920" height="1177" />
     </state>
     <state x="2036" y="130" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.23.1440.821/1440.23.1920.1177@1440.23.1920.1177" timestamp="1577758472102" />
-    <state x="2029" y="208" width="869" height="922" key="CommitChangelistDialog2" timestamp="1578018398978">
+    <state x="2029" y="208" width="869" height="922" key="CommitChangelistDialog2" timestamp="1578043317692">
       <screen x="1440" y="23" width="1920" height="1177" />
     </state>
-    <state x="2029" y="208" width="869" height="922" key="CommitChangelistDialog2/0.23.1440.814/1440.23.1920.1177@1440.23.1920.1177" timestamp="1578018398978" />
+    <state x="2029" y="208" width="869" height="922" key="CommitChangelistDialog2/0.23.1440.814/1440.23.1920.1177@1440.23.1920.1177" timestamp="1578043317692" />
     <state width="531" height="466" key="DebuggerActiveHint" timestamp="1578038336611">
       <screen x="1440" y="23" width="1920" height="1177" />
     </state>
@@ -249,10 +256,10 @@
     <state x="221" y="23" width="1024" height="816" key="SettingsEditor/0.23.1440.816/1440.23.1920.1177@0.23.1440.816" timestamp="1577697428203" />
     <state x="1735" y="23" key="SettingsEditor/0.23.1440.816/1440.23.1920.1177@1440.23.1920.1177" timestamp="1577699780094" />
     <state x="1735" y="23" key="SettingsEditor/0.23.1440.821/1440.23.1920.1177@1440.23.1920.1177" timestamp="1577764831457" />
-    <state x="2000" y="351" key="Vcs.Push.Dialog.v2" timestamp="1578018534236">
+    <state x="2000" y="351" key="Vcs.Push.Dialog.v2" timestamp="1578043326190">
       <screen x="1440" y="23" width="1920" height="1177" />
     </state>
-    <state x="2000" y="351" key="Vcs.Push.Dialog.v2/0.23.1440.814/1440.23.1920.1177@1440.23.1920.1177" timestamp="1578018534236" />
+    <state x="2000" y="351" key="Vcs.Push.Dialog.v2/0.23.1440.814/1440.23.1920.1177@1440.23.1920.1177" timestamp="1578043326190" />
     <state x="1540" y="123" width="1720" height="977" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1577945656924">
       <screen x="1440" y="23" width="1920" height="1177" />
     </state>
