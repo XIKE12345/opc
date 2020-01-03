@@ -5,7 +5,6 @@ import com.jieyun.opcdata.entity.req.OpcGroupAndItemsReq;
 import com.jieyun.opcdata.entity.req.ProgInfoDtoReq;
 import com.jieyun.opcdata.entity.resp.ProgInfoDtoResp;
 import com.jieyun.opcdata.service.OpcService;
-import org.jinterop.dcom.core.JIVariant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -67,10 +66,9 @@ public class OpcDataController {
      * @return
      */
     @PostMapping("opc/monitor/Items")
-    public JIVariant monitorOpcItems(@RequestBody MonitorItemsInfoReq monitorItemsInfoReq) {
-        JIVariant jiVariant = opcService.monitorOpcItems(monitorItemsInfoReq);
-        return jiVariant;
+    public String monitorOpcItems(@RequestBody MonitorItemsInfoReq monitorItemsInfoReq) {
+        String s = opcService.monitorOpcItems(monitorItemsInfoReq);
+        return s;
     }
-
 
 }

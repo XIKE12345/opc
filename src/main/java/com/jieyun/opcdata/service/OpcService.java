@@ -5,7 +5,6 @@ import com.jieyun.opcdata.entity.req.MonitorItemsInfoReq;
 import com.jieyun.opcdata.entity.req.OpcGroupAndItemsReq;
 import com.jieyun.opcdata.entity.req.ProgInfoDtoReq;
 import com.jieyun.opcdata.entity.resp.ProgInfoDtoResp;
-import org.jinterop.dcom.core.JIVariant;
 
 import java.util.List;
 import java.util.Map;
@@ -49,6 +48,6 @@ public interface OpcService {
      * @param monitorItemsInfoReq
      * @return
      */
-    JIVariant monitorOpcItems(MonitorItemsInfoReq monitorItemsInfoReq);
+    String monitorOpcItems(MonitorItemsInfoReq monitorItemsInfoReq);
 
 }

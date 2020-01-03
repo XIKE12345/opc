@@ -21,7 +21,7 @@ public class DataCallbackDumper implements DataCallback {
 //        System.out.println(String.format("Item: %s, Value: %s, Timestamp: %tc, Quality: %d", item.getId(), itemState.getValue(), itemState.getTimestamp(), itemState.getQuality()));
         log.info("Item:{}, Value: {}, Timestamp: {}, Quality: {}", item.getId(), itemState.getValue(), itemState.getTimestamp(), itemState.getQuality());
         try {
-            Object o = VariantDumper.dumpValue("\t", itemState.getValue());
+             VariantDumper.dumpValue("\t", itemState.getValue());
         } catch (final JIException e) {
             e.printStackTrace();
         }
