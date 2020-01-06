@@ -1,6 +1,7 @@
 package com.jieyun.opcdata.utils;
 
 import org.jinterop.dcom.common.JIException;
+import org.jinterop.dcom.core.JIArray;
 import org.jinterop.dcom.core.JIFlags;
 import org.jinterop.dcom.core.JIString;
 import org.jinterop.dcom.core.JIVariant;
@@ -14,26 +15,26 @@ import org.jinterop.dcom.core.JIVariant;
  * @Version 1.0
  **/
 public class VariantDumperUtils {
-//    protected Object dumpArray (final String prefix, final JIArray array ) throws JIException
-//    {
-//        System.out.println ( prefix + String.format ( "IsConformant: %s, IsVarying: %s", array.isConformant () ? "yes" : "no", array.isVarying () ? "yes" : "no" ) );
-//        System.out.println ( prefix + String.format ( "Dimensions: %d", array.getDimensions () ) );
-//        for ( int i = 0; i < array.getDimensions (); i++ )
-//        {
-//            System.out.println ( prefix + String.format ( "Dimension #%d: Upper Bound: %d", i, array.getUpperBounds ()[i] ) );
-//        }
-//
-//        final Object o = array.getArrayInstance ();
-//        System.out.println ( prefix + "Array Instance: " + o.getClass () );
-//        final Object[] a = (Object[])o;
-//        System.out.println ( prefix + "Array Size: " + a.length );
-//
-//        for ( final Object value : a )
-//        {
-//            String s = dumpValue(prefix + "\t", value);
-//        }
-//        return null;
-//    }
+
+    protected static String dumpArray(final String prefix, final JIArray array) throws JIException {
+        String finalValue = "";
+        System.out.println(prefix + String.format("IsConformant: %s, IsVarying: %s", array.isConformant() ? "yes" : "no", array.isVarying() ? "yes" : "no"));
+        System.out.println(prefix + String.format("Dimensions: %d", array.getDimensions()));
+        for (int i = 0; i < array.getDimensions(); i++) {
+            System.out.println(prefix + String.format("Dimension #%d: Upper Bound: %d", i, array.getUpperBounds()[i]));
+        }
+
+        // 获取Array的实例
+        final Object o = array.getArrayInstance();
+        System.out.println(prefix + "Array Instance: " + o.getClass());
+        final Object[] a = (Object[]) o;
+        System.out.println(prefix + "Array Size: " + a.length);
+
+        for (final Object value : a) {
+            finalValue = dumpValue(prefix + "\t", value);
+        }
+        return finalValue;
+    }
 
     public static String dumpValue(final Object value) throws JIException {
         String finalValue = dumpValue("", value);
@@ -48,7 +49,7 @@ public class VariantDumperUtils {
             System.out.println(prefix + String.format("IsArray: %s, IsByRef: %s, IsNull: %s", variant.isArray() ? "yes" : "no", variant.isByRefFlagSet() ? "yes" : "no", variant.isNull() ? "yes" : "no"));
 
             if (variant.isArray()) {
-                // dumpArray ( prefix, variant.getObjectAsArray () );
+                 dumpArray ( prefix, variant.getObjectAsArray () );
             } else {
                 finalValue = dumpValue(prefix + "\t", variant.getObject());
             }
