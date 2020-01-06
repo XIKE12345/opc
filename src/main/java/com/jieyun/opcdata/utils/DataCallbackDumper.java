@@ -18,7 +18,6 @@ import org.openscada.opc.lib.da.ItemState;
 public class DataCallbackDumper implements DataCallback {
     @Override
     public void changed(Item item, ItemState itemState) {
-//        System.out.println(String.format("Item: %s, Value: %s, Timestamp: %tc, Quality: %d", item.getId(), itemState.getValue(), itemState.getTimestamp(), itemState.getQuality()));
         log.info("Item:{}, Value: {}, Timestamp: {}, Quality: {}", item.getId(), itemState.getValue(), itemState.getTimestamp(), itemState.getQuality());
         try {
              VariantDumper.dumpValue("\t", itemState.getValue());
